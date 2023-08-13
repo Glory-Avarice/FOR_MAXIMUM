@@ -1,8 +1,12 @@
 from django.db import models
 from django.contrib import admin
 from django.utils.html import format_html
+from django.contrib.auth import get_user_model
+from django.utils.html import mark_safe
 
 # Create your models here.
+User = get_user_model()
+
 class Advertisement(models.Model):
     title = models.CharField('Заголовок', max_length=128)
     description = models.TextField('Описание')
@@ -10,7 +14,8 @@ class Advertisement(models.Model):
     auction = models.BooleanField('Торг', help_text='Отметьте, уместен ли торг')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    user = models.ForeignKey(User, on_delete = models.CASCADE, verbose_name='Пользователь')
+    image = models.ImageField('Изображение', upload_to = 'advertisements/')
     @admin.display(description='дата создания')
     def created_date(self):
         from django.utils import timezone
@@ -30,7 +35,16 @@ class Advertisement(models.Model):
                 '<span style="color: purple; font-weight: bold;">Сегодня в {}</span>', updated_time
             )
         return self.created_at.strftime("%d.%m.%Y в %H:%M:%S")
+    
+    @admin.display(description='миниатюра')
+    def avatar_tag(self):
+        return format_html('<img src="%s" width="50" height="50" />' % self.image.url)
 
+    # def image_img(self):
+    #     if self.image:
+    #         return mark_safe('<img scr="%s" />' % self.image.url)
+    #     else:
+    #         return 'Пусто'
 
     class Meta:
         db_table = 'advertisements'
