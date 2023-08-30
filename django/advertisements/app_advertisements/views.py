@@ -44,9 +44,9 @@ def adv_post(request):
     elif request.method == "GET":
         form = AdvertisementForm()
     context = {'form': form}
-    return render(request, 'app_advertisements/advertisement-post.html', context = context)
+    return render(request, 'app_advertisements/advertisement-post.html', context=context)
 
 def adv_detail(request, pk):
     advertisement = Advertisement.objects.get(id=pk)
-    context = {'advertisements': advertisement}
-    return render(request, 'app_advertisements/adverisement.html', context = context)
+    context = {'advertisement': advertisement}
+    return render(request, 'app_advertisements/advertisement.html', context=context)

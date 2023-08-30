@@ -37,22 +37,22 @@ class Advertisement(models.Model):
             )
         return self.created_at.strftime("%d.%m.%Y в %H:%M:%S")
     
-    # def get_avatar(self):
-    #     if self.image == '1':
-    #         return '/static/img/advd.png'
-    #     return self.image.url
-    
-    # @admin.display(description='миниатюра')
-    # def avatar_tag(self):
-    #     return format_html('<img src="%s" width="50" height="50" />' % self.get_avatar())
-
-    @admin.display(description='миниатюра')
-    def show_mini_image(self):
+    def get_avatar(self):
         if self.image == '1':
             return '/static/img/advd.png'
-        return format_html('<img src="{}" width="50" height="50" />', self.image.url)
+        return self.image.url
+    
+    @admin.display(description='миниатюра')
+    def avatar_tag(self):
+        return format_html('<img src="%s" width="50" height="50" />' % self.get_avatar())
 
-    def get_absolut_url(self):
+    # def image_img(self):
+    #     if self.image:
+    #         return mark_safe('<img scr="%s" />' % self.image.url)
+    #     else:
+    #         return 'Пусто'
+
+    def get_absolute_url(self):
         return reverse('adv-detail', kwargs={'pk': self.pk})
 
     class Meta:

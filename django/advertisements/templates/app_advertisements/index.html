@@ -49,13 +49,13 @@
 <div id="carouselExampleControls" class="carousel slide bg-primary" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{% static 'img/adv.png' %}" class="mx-auto d-block w-33" alt="...">
+      <img src="{% static 'img/advd.png' %}" class="mx-auto d-block w-33" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'img/adv.png' %}" class="mx-auto d-block w-33" alt="...">
+      <img src="{% static 'img/advd.png' %}" class="mx-auto d-block w-33" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'img/adv.png' %}" class="mx-auto d-block w-33" alt="...">
+      <img src="{% static 'img/advd.png' %}" class="mx-auto d-block w-33" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -102,16 +102,16 @@
     <div class="card mb-2" style="max-width: 1200px; margin-top: 20px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <a href="{{ adv.get_absolut_url }}" class="nav-link">
+          <a href="{{ adv.get_absolute_url }}" class="nav-link">
             <img src="{% if adv.image != '1' %}{{adv.image.url}}{% else %}{% static 'img/advd.png' %}{% endif %}" class="img-fluid rounded-start" alt="Card title">
           </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">
-              <a href="{{ adv.get_absolut_url }}" class="nav-link"><strong>{{adv.title}}</strong></a>
+              <a href="{{ adv.get_absolute_url }}" class="nav-link"><strong>{{adv.title}}</strong></a>
             </h5>
-            <a href="{{ adv.get_absolut_url }}" class="nav-link">
+            <a href="{{ adv.get_absolute_url }}" class="nav-link">
               <p class="card-text">
                 {{adv.description}}
               </p>
